@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="/system/images/favicon.ico" >
+    <!--#include virtual="/system/includes/metadata.inc" -->
+    
+	<meta name="pageType" content="\defaultSchemaCore\pageTypes\normal">
+	<meta name="DC.identifier" content="tax20100" />
+	<meta name="DC.Title" content="PT Operations Yield Collector" />
+	<meta name="DC.description" content="PT Operations Yield Collector" />
+	<meta name="DC.subject" content="" />
+    
+    <title>PT Operations Yield Collector</title>
+    
+<!-- Bootstrap core CSS -->
+    <link href="/system/css/bootstrap.css" rel="stylesheet">
+    <link href="/system/js/jQuery/jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <link href="/system/css/custom.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/system/css/navbar-fixed-top.css" rel="stylesheet">
+        <link href="/system/css/dashboard.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/system/js/html5shiv.js"></script>
+      <script src="/system/js/respond.min.js"></script>
+    <![endif]-->
+    <script>
+		strHref = window.location.href
+		if(~strHref.indexOf("bg.inrev.gov.uk"))
+		{
+			window.location.replace(strHref.replace("bg.inrev.gov.uk","bg.active.hmrci"))
+		}
+	</script>
+  </head>
+  
+  <body style="padding-top:15px;">
+    
+    <!-- Fixed navbar -->
+<div class="container-fluid">
+    <div class="row">        
+		<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+            <div class="widget stacked">
+                <div class="widget-header blue noMinMax">
+                    <h3>PT Operations Yield Collector</h3>
+					<span style="float:right" id="RateIt">
+					<strong><a data-type="howtoRateIt" data-which="/system/RateIt_popup.htm" data-size="lg"><span class="RateIt">Rate It</span></a></strong>
+						<span id="rateItGet" class="text-left">
+							<span data-rating="1" data-toggle="modal" data-target="#RateItmodal" class="Rating glyphicon glyphicon-star-empty"></span>
+							<span data-rating="2" data-toggle="modal" data-target="#RateItmodal" class="Rating glyphicon glyphicon-star-empty"></span>
+							<span data-rating="3" data-toggle="modal" data-target="#RateItmodal" class="Rating glyphicon glyphicon-star-empty"></span>
+							<span data-rating="4" data-toggle="modal" data-target="#RateItmodal" class="Rating glyphicon glyphicon-star-empty"></span>
+							<span data-rating="5" data-toggle="modal" data-target="#RateItmodal" class="Rating glyphicon glyphicon-star-empty"></span>
+							&nbsp;
+						</span>
+						<span id="rateItGot" class="hidden">
+							Thank you for your vote
+						</span>
+					</span>                    
+                </div>                
+                <div class="widget-content">
+                	<span id="yieldReferral"></span>  									
+				</div>
+            </div>                  
+        </div>
+    </div>
+</div>
+<!--#include virtual="/system/includes/modal.inc" -->
+<!--#include virtual="/system/includes/scripts.inc" -->
+<script type="text/javascript">
+
+$(document).ready(function()
+{
+	$('#yieldReferral').load('/tax/referrals/tax20100_plugin.htm', function()
+	{		
+		$('[data-show-from]').each(function ()
+	{
+		today = new Date();
+		today = new Date(today.getFullYear(),today.getMonth(),today.getDate())
+	
+		showFrom = $(this).attr('data-show-from').split('/');
+		showFrom = new Date(today.getFullYear(), showFrom[1]-1, showFrom[0]);
+	
+		if (~window.location.href.indexOf('.cc.')){
+		
+			$(this).show();
+			
+			if (showFrom <= today){
+			
+				console.log('IPDM maintenance: remove data-show-from="' + returnDate(showFrom) + '" attribute');
+			
+			}
+		
+		} else if (showFrom <= today){
+		
+			$(this).show();
+			console.log('IPDM maintenance: remove data-show-from="' + returnDate(showFrom) + '" attribute');
+		
+		}
+	});
+		$('[data-hide-from]').each(function ()
+	{
+		today = new Date();
+		today = new Date(today.getFullYear(),today.getMonth(),today.getDate())
+		
+		hideFrom = $(this).attr('data-hide-from').split('/');
+		hideFrom = new Date(today.getFullYear(), hideFrom[1]-1, hideFrom[0]);
+		if (hideFrom <= today)
+		{
+			$(this).hide();
+		}
+	});
+	});
+});
+
+</script>
+</body>
+</html>
