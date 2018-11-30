@@ -1,0 +1,1041 @@
+<form class="form-horizontal">
+	<div class="form-group">
+		<label for="iptCustName" class="col-sm-4 control-label">Name</label>
+		<div class="col-sm-8">
+			<input class="form-control" placeholder="Enter customers name" type="text" id="iptCustName" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="iptNINO" class="col-sm-4 control-label">NINO/UTR</label>
+		<div class="col-sm-8">
+			<div class="input-group">
+				<input class="form-control" maxlength="10" placeholder="Enter customers NINO / Temporary NINO / UTR" type="text" id="iptNINO"/>
+				<span class="input-group-btn"><button type="button" class="btn btn-default" title="Help" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Enter the customers identifier in the following formats:<br/><ul><li>NINO: AA123456C</li><li>Temp. NINO: 12A34567</li><li>UTR: 1234567890</li></ul>"><span class="text-muted glyphicon glyphicon-question-sign"></span></button></span>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="iptYieldType" class="col-sm-4 control-label">Yield Type</label>
+		<div class="col-sm-8">
+			<select class="form-control" id="iptYieldType">
+				<option value="">Please Select</option>
+				<option value="P87">Expenses claim - PT Ops</option>
+				<option value="P87Compliance">Expenses claim - Compliance</option>
+				<option id="Correction" value="S9ZB">9ZB Correction</option>
+				<option id="WO30" value="S9ZB">9ZB WO30</option>
+				<option id="WO59" value="S9ZB">9ZB WO59</option>
+				<option id="Return Capture" value="S9ZB">9ZB Return Capture</option>
+			</select>
+			<p></p>
+			<p><strong><a data-type="howto" data-which="/tax/referrals/tax20100_popup.htm">completing the stencil</a></strong></p>
+		</div>
+	</div>
+	
+
+
+	<div class="formS9ZB formDetails hidden">
+		<div class="form-group">
+			<label for="iptTaxYear" class="col-sm-4 control-label">Tax Year</label>
+			<div class="col-sm-8">
+				<select class="form-control" id="iptTaxYear">
+					<option value="">Please Select</option>
+				</select>
+			</div>
+		</div>		
+		<div class="form-group">
+			<label for="S9ZBCalc" class="col-sm-4 control-label">Calculation result from the original return</label>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<div class="input-group-addon">&pound;</div>
+					<input class="form-control" placeholder="Enter the calculation result from the original return - do not fully capture" id="S9ZBCalc"/>					
+					<div class="input-group-btn">
+						<button id="S9ZBCalcType" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" value="due">tax due <span class="caret"></span></button>
+				        <ul id="S9ZBCalcTypeList" class="dropdown-menu dropdown-menu-right">
+				        	<li value="due"><a href="#">due</a></li>
+				        	<li value="repyt"><a href="#">repayment</a></li>
+				        </ul>
+				        <span><button type="button" class="btn btn-default" title="Help" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Enter the calculation result from the original return - do not fully capture"><span class="text-muted glyphicon glyphicon-question-sign"></span></button></span>
+				    </div>				    																			
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="S9ZBCalcWith" class="col-sm-4 control-label">Calculation result after the S9ZB correction</label>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<div class="input-group-addon">&pound;</div>
+					<input class="form-control" placeholder="Enter the calculation result after the S9ZB correction" id="S9ZBCalcWith"/>					
+					<div class="input-group-btn">
+						<button id="S9ZBCalcWithType" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" value="due">tax due <span class="caret"></span></button>
+				        <ul id="S9ZBCalcWithTypeList" class="dropdown-menu dropdown-menu-right">
+				        	<li value="due"><a href="#">due</a></li>
+				        	<li value="repyt"><a href="#">repayment</a></li>
+				        </ul>
+				        <span><button type="button" class="btn btn-default" title="Help" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Enter the calculation result after the S9ZB correction"><span class="text-muted glyphicon glyphicon-question-sign"></span></button></span>
+				    </div>				    																			
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Please select as applicable</label>
+			<div class="col-sm-8">
+				<div class="checkbox">
+					<label><input id="S9ZBCheckboxCust" class="S9ZBCheckbox" type="checkbox" value="Customer Favour"><a class="extLink" href="#" data-toggle="popover" title="Help" data-trigger="hover" data-container="body" data-content="Decrease in amount of tax due or an increase in repayment">Customer Favour</a> - result is in customers favour</label>
+				</div>
+				<div class="checkbox">
+					<label><input id="S9ZBCheckboxCTB" class="S9ZBCheckbox" type="checkbox" value="CTB"><a class="extLink" href="#" data-toggle="popover" title="Help" data-trigger="hover" data-container="body" data-content="Cash to bank - where the correction increases the amount of tax due to be paid">CTB</a> - result is increase in tax</label>
+				</div>
+				<div class="checkbox">
+					<label><input id="S9ZBCheckboxRLP" class="S9ZBCheckbox" type="checkbox" value="RLP"><a class="extLink" href="#" data-toggle="popover" title="Help" data-trigger="hover" data-container="body" data-content="Revenue Loss Protected - this is where a correction stops a repayment being due or reduces the amount of repayment due">RLP</a> - result stops / reduces a refund</label>
+				</div>
+				<div class="checkbox">
+					<label><input id="S9ZBCheckboxNoChange" class="S9ZBCheckbox" type="checkbox" value="No change"><a class="extLink" href="#" data-toggle="popover" title="Help" data-trigger="hover" data-container="body" data-content="No change - where there correction does not change the calculation result">No change</a> - no change to calculation</label>
+				</div>
+			</div>
+		</div>		
+		<div class="form-group">
+			<label for="S9ZBCYCode" class="col-sm-4 control-label">CY coding changed as a result of correction (only complete where applicable)</label>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<div class="input-group-addon">Code change &pound;</div>
+					<input type="number" placeholder="Enter an amount" class="form-control" id="S9ZBCYCode" />
+					<div class="input-group-btn">
+						<button id="S9ZBCYRate" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" value="0">at tax rate 0% <span class="caret"></span></button>
+				        <ul id="S9ZBCYRateList" class="dropdown-menu dropdown-menu-right">
+				        	<li value="0"><a href="#">0%</a></li>
+				        	<li value="20"><a href="#">20%</a></li>
+				        	<li value="40"><a href="#">40%</a></li>
+				        </ul>
+				    </div>																				
+				</div>
+				<input class="hidden" type="text" id="S9ZBCYTotal" disabled/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="S9ZBCY1Code" class="col-sm-4 control-label">CY+1 coding changed as a result of correction (only complete where applicable)</label>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<div class="input-group-addon">Code change &pound;</div>
+					<input type="number" placeholder="Enter an amount" class="form-control" id="S9ZBCY1Code" />
+					<div class="input-group-btn">
+						<button id="S9ZBCY1Rate" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" value="0">at tax rate 0% <span class="caret"></span></button>
+				        <ul id="S9ZBCY1RateList" class="dropdown-menu dropdown-menu-right">
+				        	<li value="0"><a href="#">0%</a></li>
+				        	<li value="20"><a href="#">20%</a></li>
+				        	<li value="40"><a href="#">40%</a></li>
+				        </ul>
+				    </div>																				
+				</div>
+				<input class="hidden" type="text" id="S9ZBCY1Total" disabled/>
+			</div>
+		</div>		
+	</div>
+	<div class="formP87 formDetails hidden">
+		<div class="form-group">
+			<label for="iptYears" class="col-sm-4 control-label">Number of Years</label>
+			<div class="col-sm-8">
+				<input class="form-control" placeholder="Enter the number of years" type="number" id="iptYears" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Type - choose all applicable options</label>
+			<div class="col-sm-4">
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Airline Crew Vaccinations" id="chk1">Airline Crew Vaccinations</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Aviation etc." id="chk2">Aviation etc.</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="DBS checks" id="chk3">DBS checks</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Dr's stethoscopes" id="chk4">Dr's stethoscopes</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Electrical" id="chk5">Electrical</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Estimated/Round sums" id="chk6">Estimated/Round sums</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Exam Fees" id="chk7">Exam Fees</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Football/Rugby Players" id="chk8">Football/Rugby Players</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Flat Rate Expenses" id="chk9">Flat Rate Expenses</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="General Motoring" id="chk10">General Motoring</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Gym/Fitness" id="chk11">Gym/Fitness</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Home as Office" id="chk12">Home as Office</label>
+				</div>									
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Meal allowance" id="chk13">Meal allowance</label>
+				</div>																																			
+			</div>
+			<div class="col-sm-4">
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Medical procedures" id="chk14">Medical procedures</label>
+				</div>									
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Mileage - with no employer reimbursement" id="chk15">Mileage - with no employer reimbursement</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Mileage with a company car" id="chk16">Mileage with a company car</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="MOD" id="chk17">MOD</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Normal/non specialist clothing" id="chk18">Normal/non specialist clothing</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Passenger payments" id="chk19">Passenger payments</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Professional Indemnity Insurance" id="chk20">Professional Indemnity Insurance</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="PSUB's" id="chk21">PSUB's</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="T & S with no reimbursement" id="chk22">T & S with no reimbursement</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Telephone calls" id="chk23">Telephone calls</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Tools" id="chk24">Tools</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Visas" id="chk25">Visas</label>
+				</div>
+				<div class="checkbox">
+					<label><input class="TypeCheckbox" type="checkbox" value="Other" id="chk26">Other type not listed	</label>
+				</div>																																			
+			</div>
+		</div>							
+		<div class="form-group" id="other">
+			<label for="iptOtherType" class="col-sm-4 control-label">other type refused - only complete if 'other type' ticked above</label>
+			<div class="col-sm-8">
+				<input class="form-control" type="text" id="iptOtherType" placeholder="complete if 'other type' ticked above" />
+			</div>
+		</div>
+		
+		
+		<div class="bs-callout bs-callout-note detailL4">
+	<h4>Note:</h4>
+  	<div>
+	We cannot claim yield when the customer does not pay tax.  Please ensure the correct tax rate is used for each separate year.
+	</div>
+</div>
+		<div class="form-group" data-hide-from="06/06/2018">
+			<label for="CYExpense" class="col-sm-4 control-label"><span id="txtCYM5"></span> Amount Refused</label>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<div class="input-group-addon">Expenses of &pound;</div>
+					<input type="number" placeholder="Enter an amount" class="form-control form-expense" id="CYM5Expense" />
+					<input class="hidden" type="text" id="CYM5Loss" disabled/>
+					<div class="input-group-btn">
+						<button id="CYM5Rate" type="button" class="btn btn-default dropdown-toggle form-rate" data-toggle="dropdown" aria-expanded="false" value="0">at tax rate 0% <span class="caret"></span></button>
+				        <ul id="CYM5RateList" class="dropdown-menu dropdown-menu-right">
+				        	<li value="0"><a>0%</a></li>
+				        	<li value="20"><a>20%</a></li>
+				        	<li value="40"><a>40%</a></li>
+				        </ul>
+				    </div>																				
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="CYExpense" class="col-sm-4 control-label"><span id="txtCYM4"></span> Amount Refused</label>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<div class="input-group-addon">Expenses of &pound;</div>
+					<input type="number" placeholder="Enter an amount" class="form-control form-expense" id="CYM4Expense" />
+					<input class="hidden" type="text" id="CYM4Loss" disabled/>
+					<div class="input-group-btn">
+						<button id="CYM4Rate" type="button" class="btn btn-default dropdown-toggle form-rate" data-toggle="dropdown" aria-expanded="false" value="0">at tax rate 0% <span class="caret"></span></button>
+				        <ul id="CYM4RateList" class="dropdown-menu dropdown-menu-right">
+				        	<li value="0"><a>0%</a></li>
+				        	<li value="20"><a>20%</a></li>
+				        	<li value="40"><a>40%</a></li>
+				        </ul>
+				    </div>																				
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="CYExpense" class="col-sm-4 control-label"><span id="txtCYM3"></span> Amount Refused</label>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<div class="input-group-addon">Expenses of &pound;</div>
+					<input type="number" placeholder="Enter an amount" class="form-control form-expense" id="CYM3Expense" />
+					<input class="hidden" type="text" id="CYM3Loss" disabled/>
+					<div class="input-group-btn">
+						<button id="CYM3Rate" type="button" class="btn btn-default dropdown-toggle form-rate" data-toggle="dropdown" aria-expanded="false" value="0">at tax rate 0% <span class="caret"></span></button>
+				        <ul id="CYM3RateList" class="dropdown-menu dropdown-menu-right">
+				        	<li value="0"><a>0%</a></li>
+				        	<li value="20"><a>20%</a></li>
+				        	<li value="40"><a>40%</a></li>
+				        </ul>
+				    </div>																				
+				</div>
+			</div>
+		</div>			
+		<div class="form-group">
+			<label for="CYExpense" class="col-sm-4 control-label"><span id="txtCYM2"></span> Amount Refused</label>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<div class="input-group-addon">Expenses of &pound;</div>
+					<input type="number" placeholder="Enter an amount" class="form-control form-expense" id="CYM2Expense" />
+					<input class="hidden" type="text" id="CYM2Loss" disabled/>
+					<div class="input-group-btn">
+						<button id="CYM2Rate" type="button" class="btn btn-default dropdown-toggle form-rate" data-toggle="dropdown" aria-expanded="false" value="0">at tax rate 0% <span class="caret"></span></button>
+				        <ul id="CYM2RateList" class="dropdown-menu dropdown-menu-right">
+				        	<li value="0"><a>0%</a></li>
+				        	<li value="20"><a>20%</a></li>
+				        	<li value="40"><a>40%</a></li>
+				        </ul>
+				    </div>																				
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="CYExpense" class="col-sm-4 control-label"><span id="txtCYM1"></span> Amount Refused</label>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<div class="input-group-addon">Expenses of &pound;</div>
+					<input type="number" placeholder="Enter an amount" class="form-control form-expense" id="CYM1Expense" />
+					<input class="hidden" type="text" id="CYM1Loss" disabled/>
+					<div class="input-group-btn">
+						<button id="CYM1Rate" type="button" class="btn btn-default dropdown-toggle form-rate" data-toggle="dropdown" aria-expanded="false" value="0">at tax rate 0% <span class="caret"></span></button>
+				        <ul id="CYM1RateList" class="dropdown-menu dropdown-menu-right">
+				        	<li value="0"><a>0%</a></li>
+				        	<li value="20"><a>20%</a></li>
+				        	<li value="40"><a>40%</a></li>
+				        </ul>
+				    </div>																				
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="CYExpense" class="col-sm-4 control-label"><span id="txtCY"></span> Amount Refused</label>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<div class="input-group-addon">Expenses of &pound;</div>
+					<input type="number" placeholder="Enter an amount" class="form-control form-expense" id="CYExpense" />
+					<input class="hidden" type="text" id="CYLoss" disabled/>
+					<div class="input-group-btn">
+						<button id="CYRate" type="button" class="btn btn-default dropdown-toggle form-rate" data-toggle="dropdown" aria-expanded="false" value="0">at tax rate 0% <span class="caret"></span></button>
+				        <ul id="CYRateList" class="dropdown-menu dropdown-menu-right">
+				        	<li value="0"><a>0%</a></li>
+				        	<li value="19"><a>19%</a></li>
+				        	<li value="20"><a>20%</a></li>
+				        	<li value="21"><a>21%</a></li>
+				        	<li value="40"><a>40%</a></li>
+				        	<li value="41"><a>41%</a></li>
+				        </ul>
+				    </div>																				
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="TotalLoss" class="col-sm-4 control-label">Total Yield (CY Doubled)</label>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<div class="input-group-addon">&pound;</div>
+					<input class="form-control" type="number" id="TotalLoss" disabled/>
+				</div>
+			</div>
+		</div>	
+	<div class="bs-callout bs-callout-note">
+		<h4>Note:</h4>	
+		<p>We report for 2 years ( CY and CY+1) as we have stopped the relief in the code going forward</p>
+	</div>
+	
+
+	</div>
+	
+	
+	<div class="form-group">
+		<div class="col-sm-4 noteS9ZB noteDetails hidden">
+			<div class="hidden" id="inS9ZBNote">Section 9ZB correction for <span id="outS9ZBTaxYear"></span> as follows - Calc without 9ZB - &pound;<span id="outS9ZBCalc"></span>, Calc with 9ZB - &pound;<span id="outS9ZBCalcWith"></span>,  Options - <span id="outS9ZBOptions"></span> CY Code change - &pound;<span id="outS9ZBCY"></span> at <span id="outS9ZBCYRate"></span> - &pound;<span id="outS9ZBCYTotal"></span>, CY1 Code change - &pound;<span id="outS9ZBCY1"></span> at <span id="outS9ZBCY1Rate"></span> - &pound;<span id="outS9ZBCY1Total"></span>
+			</div>
+			<button class="btn btn-block btn-primary text-left btn-copy" type="button" data-which="S9ZBNote"><span class="glyphicon glyphicon-copy"></span> copy note</button>		
+			<textarea cols="80" rows="6" style="padding:2px;" id="S9ZBNote" class="hidden"></textarea>
+		</div>
+		<div class="col-sm-4 noteP87 noteDetails hidden">
+			<div class="hidden" id="inP87Note">Expenses claimed rejected as follows - Type - <span id="outType"></span> Number of Year - <span id="outYears"></span>, <!--<span id="outCYM5"></span> - &pound;<span id="outCYM5Expense"></span>,--> <span id="outCYM4"></span> - &pound;<span id="outCYM4Expense"></span>, <span id="outCYM3"></span> - &pound;<span id="outCYM3Expense"></span>, <span id="outCYM2"></span> - &pound;<span id="outCYM2Expense"></span>, <span id="outCYM1"></span> - &pound;<span id="outCYM1Expense"></span>, <span id="outCY"></span> - &pound;<span id="outCYExpense"></span>, Total - &pound;<span id="outTotal"></span>
+			</div>
+			<button class="btn btn-block btn-primary text-left btn-copy" type="button" data-which="P87Note"><span class="glyphicon glyphicon-copy"></span> copy note</button>		
+			<textarea cols="80" rows="6" style="padding:2px;" id="P87Note" class="hidden"></textarea>
+		</div>
+		<div id="funnyBtn" class="col-sm-4 col-sm-offset-4">
+			<button type="button" class="btn btn-primary btn-block btn-submit"><span class="glyphicon glyphicon-send"></span> Submit</button>
+		</div>
+		<div class="col-sm-4">
+			<button type="button" class="btn btn-primary btn-block" onClick="location.reload(true);"><span class="glyphicon glyphicon-refresh"></span> Reset Tool</button>
+		</div>
+	</div>  
+</form>
+<div class="alert-div"></div>
+<div id="warningModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Warning</h4>
+			</div>
+			<div class="modal-body">
+				<p>There is no entry for current year. If a claim has been refused that would otherwise have been coded or, if the customer has made a claim for current year and the claim has been refused an entry must be made.</p>
+				<p>Has a claim been refused for current year?</p><br>
+				<div class="row">
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-primary btn-block" id="warningYes">Yes - CY refused</button>
+					</div>
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-primary btn-block" id="warningNo">No - CY not refused</button>										
+					</div>										
+				</div>
+			</div>
+		</div>
+	</div>
+</div>	
+
+<script type="text/javascript">
+
+$(document).ready(function() 
+{				
+	$('[data-toggle="popover"]').popover();
+	var CurrentTaxYear = GetCurrentTaxYear();
+	$('#txtCYM5').text(returnWordedTaxYear(CurrentTaxYear-5));
+	$('#txtCYM4').text(returnWordedTaxYear(CurrentTaxYear-4));
+	$('#txtCYM3').text(returnWordedTaxYear(CurrentTaxYear-3));
+	$('#txtCYM2').text(returnWordedTaxYear(CurrentTaxYear-2));
+	$('#txtCYM1').text(returnWordedTaxYear(CurrentTaxYear-1));
+	$('#txtCY').text(returnWordedTaxYear(CurrentTaxYear));
+	$('#outCYM5').text((CurrentTaxYear-2005)+'/'+(CurrentTaxYear-2004));
+	$('#outCYM4').text((CurrentTaxYear-2004)+'/'+(CurrentTaxYear-2003));
+	$('#outCYM3').text((CurrentTaxYear-2003)+'/'+(CurrentTaxYear-2002));
+	$('#outCYM2').text((CurrentTaxYear-2002)+'/'+(CurrentTaxYear-2001));
+	$('#outCYM1').text((CurrentTaxYear-2001)+'/'+(CurrentTaxYear-2000));
+	$('#outCY').text((CurrentTaxYear-2000)+'/'+(CurrentTaxYear-1999));
+		
+	$('#iptYears').change(function(){updateNote();});
+	$('#iptTaxYear').change(function(){updateNote();});
+	
+	$('.form-expense').keyup(function(){calcLosses();});
+	$('.form-expense').change(function(){calcLosses();});
+	$('.form-rate').change(function(){calcLosses();});
+	$('#S9ZBCalc').keyup(function()
+	{		
+		if(Number($('#S9ZBCalc').val()) < 0)
+		{
+			$('#S9ZBCalc').val(0);
+		}
+		calcLosses();
+	});
+	$('#S9ZBCalc').change(function(){calcLosses()});
+	$('#S9ZBCalcWith').keyup(function()
+	{		
+		if(Number($('#S9ZBCalcWith').val()) < 0)
+		{
+			$('#S9ZBCalcWith').val(0);
+		}
+		calcLosses();
+	});
+	$('#S9ZBCalcWith').change(function(){calcLosses()});
+	$('.S9ZBCheckbox').change(function(){calcLosses()});
+	$('#S9ZBCYCode').keyup(function(){calcLosses()});
+	$('#S9ZBCYCode').change(function(){calcLosses()});
+	
+	$('#S9ZBCalcTypeList li').on('click', function() 
+	{
+    	$('#S9ZBCalcType').html('tax ' + $(this).text() + ' <span class="caret"></span>');
+    	$('#S9ZBCalcType').val($(this).text());
+    	calcLosses()
+	});
+	$('#S9ZBCalcWithTypeList li').on('click', function() 
+	{
+    	$('#S9ZBCalcWithType').html('tax ' + $(this).text() + ' <span class="caret"></span>');
+    	$('#S9ZBCalcWithType').val($(this).val());
+    	calcLosses()
+	});
+	$('#CYM5RateList li').on('click', function() 
+	{
+    	$('#CYM5Rate').html('at tax rate ' + $(this).text() + ' <span class="caret"></span>');
+    	$('#CYM5Rate').val($(this).val());
+    	calcLosses()
+	});
+	$('#CYM4RateList li').on('click', function() 
+	{
+    	$('#CYM4Rate').html('at tax rate ' + $(this).text() + ' <span class="caret"></span>');
+    	$('#CYM4Rate').val($(this).val());
+    	calcLosses()
+	});	
+	$('#CYM3RateList li').on('click', function() 
+	{
+    	$('#CYM3Rate').html('at tax rate ' + $(this).text() + ' <span class="caret"></span>');
+    	$('#CYM3Rate').val($(this).val());
+    	calcLosses()
+	});	
+	$('#CYM2RateList li').on('click', function() 
+	{
+    	$('#CYM2Rate').html('at tax rate ' + $(this).text() + ' <span class="caret"></span>');
+    	$('#CYM2Rate').val($(this).val());
+    	calcLosses()
+	});	
+	$('#CYM1RateList li').on('click', function() 
+	{
+    	$('#CYM1Rate').html('at tax rate ' + $(this).text() + ' <span class="caret"></span>');
+    	$('#CYM1Rate').val($(this).val());
+    	calcLosses()
+	});	
+	$('#CYRateList li').on('click', function() 
+	{
+    	$('#CYRate').html('at tax rate ' + $(this).text() + ' <span class="caret"></span>');
+    	$('#CYRate').val($(this).val());
+    	calcLosses()
+	});	
+
+
+	$('#S9ZBCYRateList li').on('click', function() 
+	{
+    	$('#S9ZBCYRate').html('at tax rate ' + $(this).text() + ' <span class="caret"></span>');
+    	$('#S9ZBCYRate').val($(this).val());
+    	calcLosses()
+	});	
+	$('#S9ZBCY1Code').keyup(function(){calcLosses()});
+	$('#S9ZBCY1Code').change(function(){calcLosses()});
+	$('#S9ZBCY1RateList li').on('click', function() 
+	{
+    	$('#S9ZBCY1Rate').html('at tax rate ' + $(this).text() + ' <span class="caret"></span>');
+    	$('#S9ZBCY1Rate').val($(this).val());
+    	calcLosses()
+	});
+		
+	$('.btn-submit').click(function()
+	{
+		validateForm()
+	});
+	
+	for (i = GetCurrentTaxYear(); i > GetCurrentTaxYear()-5; i--) 
+	{ 
+	    $('#iptTaxYear').append('<option value="'+(i+1)+'">'+returnWordedTaxYear(i)+'</option>')
+	}
+	
+	$('#warningModal').on('hidden.bs.modal', function (){
+	
+		if (warningCY === true){
+	
+			alert('Please enter the correct value(s) for 20' + (CurrentTaxYear - 2000) + '/' + (CurrentTaxYear - 1999) + ' Amount Refused');	
+			$('#CYExpense').focus();					
+			
+		}
+	
+	});		
+	
+});
+
+//Howto code included here due to page being plugin cannot include script files as conflicts
+//with the page it is plugged into, also creating issues with seeing levels.
+$('a[data-type="howto"]').each(
+	function (index)
+	{
+		$(this).addClass('HowTo');
+		$(this).click(
+			function ()
+			{
+				ShowHowTo($(this).attr('data-which'), $(this).attr('data-size'));
+			}
+		);
+		$(this).css("cursor", "pointer");
+	}
+);
+
+//Copy note code included here due to page being plugin cannot include script files as conflicts
+//with the page it is plugged into, also creating issues with seeing levels.
+$('.btn-copy').each(
+	function (index)
+	{
+		$(this).attr('data-btn-text', $(this).html()); // 6090370 - stores btn text on DOM load
+		$(this).attr('data-btn-class', $(this).attr('class')); // 6090370 - stores btn class on DOM load		
+		
+		$(this).click(function ()
+		{
+		
+			$('#' + $(this).attr('data-which')).find('*').removeAttr("data-which data-type data-display data-display data-placement data-lob data-size")
+
+			$('.btn-copy').each(function(){ // 6090370 - restores all btn-copy back to previous state
+				$(this).html($(this).attr('data-btn-text'));
+				$(this).attr('class', $(this).attr('data-btn-class'));
+			});
+			
+			var emailLink, range;
+			if ($('#' + $(this).attr('data-which')).hasClass("hidden"))
+			{
+				$('#' + $(this).attr('data-which')).removeClass("hidden");
+				emailLink = document.querySelector('#' + $(this).attr('data-which'));
+				range = document.createRange();
+				range.selectNode(emailLink);
+				window.getSelection().removeAllRanges();
+				window.getSelection().addRange(range);
+				document.execCommand('copy');
+				$('#' + $(this).attr('data-which')).addClass("hidden");
+			}
+			else
+			{
+				emailLink = document.querySelector('#' + $(this).attr('data-which'));
+				range = document.createRange();
+				range.selectNode(emailLink);
+				window.getSelection().removeAllRanges();
+				window.getSelection().addRange(range);
+				document.execCommand('copy');
+			}
+			var selection = ('getSelection' in window)
+			    ? window.getSelection()
+			    : ('selection' in document)
+			    ? document.selection
+			    : null;
+			if ('removeAllRanges' in selection) selection.removeAllRanges();
+			else if ('empty' in selection) selection.empty();
+			$(this).html('<span class="glyphicon glyphicon-ok"></span> copied to clipboard');
+			$(this).removeClass('btn-primary').addClass('btn-success');
+			saveToCaf("\\\\c\\s\\CAF2\\PT OPS BCT NQM Report\\WebchatCopy\\", {
+				Who: FindPID(),						
+				Process: document.location.href						
+			});
+		});
+	}
+);
+
+$('#iptYieldType').change(function()
+{
+	if($('iptYieldType').val() == '')
+		$('#funnyBtn').addClass('col-sm-offset-4');
+	else
+		$('#funnyBtn').removeClass('col-sm-offset-4');
+	$('.formDetails').hide();
+	$('.noteDetails').hide();
+	if ($('#iptYieldType').val() === 'P87' || $('#iptYieldType').val() === 'P87Compliance'){
+		$('.formP87').show('slow');
+		$('.noteP87').show();	
+	} else {
+		$('.form' + $('#iptYieldType').val()).show('slow');
+		$('.note' + $('#iptYieldType').val()).show();
+	}
+
+	updateNote();	
+});
+
+function validateForm()
+{
+	var valid = true;
+	if($('#iptCustName').val() == '')
+	{
+		valid = false;
+		alert("You have not entered the customer's name.\n\nPlease make an entry in the form field provided");
+		$('#iptCustName').focus();
+	}
+	else if(validateID($('#iptNINO').val()) == false)
+	{
+		valid = false;
+		alert("You have not entered the customer's identifier.\n\nPlease enter in the following formats:\n\nNINO: AA123456C\nTemporary NINO: 12A34567\nUTR: 1234567890");
+		$('#iptNINO').focus();
+	}
+	else if($('#iptYieldType').val()=="")
+	{
+		valid = false;
+		alert("You have not selected the Yield Type.\n\nPlease select the correct entry using the form field provided");
+		$('#iptYieldType').focus();
+	}
+	else if($('#iptYieldType').val() == 'P87' || $('#iptYieldType').val() == 'P87Compliance')
+	{
+		if($('#iptYears').val()=="" || !$.isNumeric($('#iptYears').val()))
+		{
+			valid = false;
+			alert("You have not entered a numeric value in 'Number of years'.\n\nPlease enter the correct value using the form field provided");
+			$('#iptYears').focus();
+		}
+		else if(!ExpenseTypeValid())
+		{
+			valid = false;
+			alert("You have not selected the type of expense.\n\nPlease select all checkboxes applicable");
+			$('#chk1').focus();
+		}
+		else if(!$('#chk26').is(':checked') == false && $('#iptOtherType').val() == '')
+		{
+			valid = false;
+			alert("You have selected the other type checkbox but have not entered a description.\n\nPlease enter the other type refused using the form field provided");
+			$('#iptOtherType').focus();
+		}
+		else if(($('#CYM5Expense').val()=="" || !$.isNumeric($('#CYM5Expense').val())) && ($('#CYM4Expense').val()=="" || !$.isNumeric($('#CYM4Expense').val())) && ($('#CYM3Expense').val()=="" || !$.isNumeric($('#CYM3Expense').val())) && ($('#CYM2Expense').val()=="" || !$.isNumeric($('#CYM2Expense').val())) && 							($('#CYM1Expense').val()=="" || !$.isNumeric($('#CYM1Expense').val())) && ($('#CYExpense').val()=="" || !$.isNumeric($('#CYExpense').val())))
+		{
+			valid = false;
+			alert("You have not entered the Amounts Refused in any years.\n\nPlease enter the correct value(s) in the year(s) form field provided");
+			$('#CYM4Expense').focus();
+		}
+		else if($('#CYExpense').val() === '')
+		{
+
+			$('#warningModal').modal({keyboard: false, backdrop: 'static'});
+			
+			$('#warningYes').click(function(){
+
+				valid = false;
+				warningCY = true;
+			
+				$('#warningModal').modal('hide');
+			
+			});
+			
+			$('#warningNo').click(function(){
+			
+				loadReport();
+				warningCY = false;
+				$('#warningModal').modal('hide');				
+			
+			});					
+		} 
+		else if(valid)
+		{
+			loadReport();
+		}
+	}
+	else //iptYieldType == 'S9ZB'
+	{
+		if($('#iptTaxYear').val()=="")
+		{
+			valid = false;
+			alert("You have not selected the Tax Year.\n\nPlease select the correct entry using the form field provided");
+			$('#iptTaxYear').focus();
+		}
+		else if($('#S9ZBCalc').val()=='' || !$.isNumeric($('#S9ZBCalc').val()))
+		{		
+			valid = false;
+			alert("You have not entered a numeric value in 'Amount(s) declared on return'.\n\nPlease enter the correct value using the form field provided");
+			$('#S9ZBCalc').focus();
+		}
+		else if($('#S9ZBCalcWith').val()=='' || !$.isNumeric($('#S9ZBCalcWith').val()))
+		{		
+			valid = false;
+			alert("You have not entered a numeric value in 'Amounts after S9ZB corrections'.\n\nPlease enter the correct value using the form field provided");
+			$('#S9ZBCalcWith').focus();
+		}
+		else if(!$('#S9ZBCheckboxCust').is(':checked') && !$('#S9ZBCheckboxCTB').is(':checked') && !$('#S9ZBCheckboxRLP').is(':checked') && !$('#S9ZBCheckboxNoChange').is(':checked'))
+		{		
+			valid = false;
+			alert("You have not selected the result of the change.\n\nPlease select all checkboxes applicable");
+			$('#S9ZBCheckboxCust').focus();
+		}
+		else if(valid)
+		{
+			loadReport();
+		}				
+	}	
+}
+	
+function updateNote()
+{
+	var strType=""
+	$('.TypeCheckbox:checked').each(function( index ) 
+	{
+		strType += $(this).val()+', ';
+	});
+	$('#outType').html(strType);
+		
+	$('#outYears').html($('#iptYears').val());
+	$('#outPYExpenses').html($('#PYExpense').val());
+	$('#outPYRate').html($('#PYRate').val());
+	$('#outCYM5Expense').html($('#CYM5Expense').val());
+	$('#outCYM4Expense').html($('#CYM4Expense').val());
+	$('#outCYM3Expense').html($('#CYM3Expense').val());
+	$('#outCYM2Expense').html($('#CYM2Expense').val());
+	$('#outCYM1Expense').html($('#CYM1Expense').val());
+	$('#outCYExpense').html($('#CYExpense').val());
+	$('#outTotal').html($('#TotalLoss').val());
+	$('#P87Note').html($('#inP87Note').text().trim());
+		
+	$('#outS9ZBTaxYear').html($('#iptTaxYear').val());
+	
+	var S9ZBCalc, S9ZBCalcWith;
+	if($('#S9ZBCalcType').val() == 'due')	    	
+		S9ZBCalc = $('#S9ZBCalc').val();	    	
+	else	    	
+		S9ZBCalc = -$('#S9ZBCalc').val();
+	
+	if($('#S9ZBCalcWithType').val() == 'due')	    	
+		S9ZBCalcWith = $('#S9ZBCalcWith').val();	    	
+	else	    	
+		S9ZBCalcWith = -$('#S9ZBCalcWith').val();	    		
+	    		
+	$('#outS9ZBCalc').html(S9ZBCalc);
+	$('#outS9ZBCalcWith').html(S9ZBCalcWith);
+	var strOptions=""
+	$('.S9ZBCheckbox:checked').each(function( index ) 
+	{
+		strOptions += $(this).val()+',';
+	});
+	$('#outS9ZBOptions').html(strOptions);
+		
+	$('#outS9ZBCY').html($('#S9ZBCYCode').val());
+	$('#outS9ZBCYRate').html($('#S9ZBCYRate').val()+'%');
+	$('#outS9ZBCYTotal').html($('#S9ZBCYTotal').val());
+	$('#outS9ZBCY1').html($('#S9ZBCY1Code').val());
+	$('#outS9ZBCY1Rate').html($('#S9ZBCY1Rate').val()+'%');
+	$('#outS9ZBCY1Total').html($('#S9ZBCY1Total').val());
+	$('#S9ZBNote').html($('#inS9ZBNote').text().trim());
+}
+	
+function calcLosses()
+{
+	if($.isNumeric($('#PYExpense').val()))
+	{
+		$('#PYLoss').val(Number(Number($('#PYExpense').val())*Number($('#PYRate').val())).toFixed(2));
+	}
+	else
+	{
+		$('#PYLoss').val(0);
+	}
+	
+	if($.isNumeric($('#CYM5Expense').val()))
+	{
+		$('#CYM5Loss').val(Number(Number($('#CYM5Expense').val())*Number($('#CYM5Rate').val()/100)).toFixed(2));
+	}
+	else
+	{
+		$('#CYM5Loss').val(0);
+	}
+	
+	if($.isNumeric($('#CYM4Expense').val()))
+	{
+		$('#CYM4Loss').val(Number(Number($('#CYM4Expense').val())*Number($('#CYM4Rate').val()/100)).toFixed(2));
+	}
+	else
+	{
+		$('#CYM4Loss').val(0);
+	}
+	if($.isNumeric($('#CYM3Expense').val())){$('#CYM3Loss').val(Number(Number($('#CYM3Expense').val())*Number($('#CYM3Rate').val()/100)).toFixed(2));}else{$('#CYM3Loss').val(0);}
+	if($.isNumeric($('#CYM2Expense').val())){$('#CYM2Loss').val(Number(Number($('#CYM2Expense').val())*Number($('#CYM2Rate').val()/100)).toFixed(2));}else{$('#CYM2Loss').val(0);}
+	if($.isNumeric($('#CYM1Expense').val())){$('#CYM1Loss').val(Number(Number($('#CYM1Expense').val())*Number($('#CYM1Rate').val()/100)).toFixed(2));}else{$('#CYM1Loss').val(0);}
+	if($.isNumeric($('#CYExpense').val())){$('#CYLoss').val(Number(Number($('#CYExpense').val())*Number($('#CYRate').val()/100)*2).toFixed(2));}else{$('#CYLoss').val(0);}
+	$('#TotalLoss').val(Number(Number($('#CYM5Loss').val())+Number($('#CYM4Loss').val())+Number($('#CYM3Loss').val())+Number($('#CYM2Loss').val())+Number($('#CYM1Loss').val())+Number($('#CYLoss').val())).toFixed(2));
+		
+	if($.isNumeric($('#S9ZBCYCode').val()))
+	{
+		$('#S9ZBCYTotal').val(Number(Number($('#S9ZBCYCode').val())*Number($('#S9ZBCYRate').val()/100)).toFixed(2));
+	}
+	else
+	{
+		$('#S9ZBCYTotal').val(0);
+	}
+	if($.isNumeric($('#S9ZBCY1Code').val()))
+	{
+		$('#S9ZBCY1Total').val(Number(Number($('#S9ZBCY1Code').val())*Number($('#S9ZBCY1Rate').val()/100)).toFixed(2));
+	}
+	else
+	{
+		$('#S9ZBCY1Total').val(0);
+	}
+
+	$('#outS9ZBTotal').val(Number($('#S9ZBCYTotal').val())+Number($('#S9ZBCY1Total').val()));
+	updateNote();
+}
+
+function loadReport()
+{
+	try
+	{
+    	var fso  = new ActiveXObject("Scripting.FileSystemObject"); 
+    	var strFile;
+    	var today = new Date();
+	   	var strFolder;
+
+    	strFile = '\\\\c\\s\\CAF2\\PT OPS BCT NQM Report\\Yield'+$('#iptYieldType').val()+'\\' + FindPID();
+		strFile = strFile + today.getFullYear();
+		strFile = strFile + (today.getMonth()+1);
+		strFile = strFile + today.getDate();	
+		strFile = strFile + today.getHours();
+		strFile = strFile + today.getMinutes();
+		strFile = strFile + today.getSeconds();
+		strFile = strFile +	".xml";
+		
+	    var fh = fso.CreateTextFile(strFile , true);
+	    fh.WriteLine('<?xml version="1.0" encoding="utf-8"?>');
+	    fh.WriteLine('<dataroot>');
+	    fh.WriteLine('<entry>');
+	    fh.WriteLine('<pid>' + FindPID() + '</pid>');
+	    fh.WriteLine('<date>' + ((today.getTime()/86400000)+25569) + '</date>');
+	    fh.WriteLine('<name>' + $('#iptCustName').val() + '</name>');
+	    fh.WriteLine('<id>' + $('#iptNINO').val() + '</id>');
+	    
+	    if($('#iptYieldType').val() == 'S9ZB')
+	    {
+	    	fh.WriteLine('<section>' + $('#iptYieldType').val() + ' - ' + $('#iptYieldType :selected').attr('id') + '</section>');
+	    }
+	    else
+	    {
+	    	fh.WriteLine('<section>' + $('#iptYieldType').val() + '</section>');
+	    }
+	    
+	    if($('#iptOtherType').val()!="")
+	    {
+	    	fh.WriteLine('<othertype>' + $('#iptOtherType').val() + '</othertype>')	;
+	    }
+	    
+	    if($('#iptYieldType').val()=="S9ZB")
+	    {
+	    	var S9ZBCalc, S9ZBCalcWith;
+	    	if($('#S9ZBCalcType').val() == 'due')	    	
+	    		S9ZBCalc = $('#S9ZBCalc').val();	    	
+	    	else	    	
+	    		S9ZBCalc = -$('#S9ZBCalc').val();
+	    	
+	    	if($('#S9ZBCalcWithType').val() == 'due')	    	
+	    		S9ZBCalcWith = $('#S9ZBCalcWith').val();	    	
+	    	else	    	
+	    		S9ZBCalcWith = -$('#S9ZBCalcWith').val();
+	    
+		    fh.WriteLine('<calcwithouts9ZB>' + S9ZBCalc + '</calcwithouts9ZB>');
+		    fh.WriteLine('<calcwiths9ZB>' + S9ZBCalcWith + '</calcwiths9ZB>');
+		    $('.S9ZBCheckbox:checked').each(function( index ) 
+		    {
+				fh.WriteLine('<option>' + $(this).val() + '</option>');
+			});
+		    fh.WriteLine('<cycode>' + $('#S9ZBCYCode').val() + '</cycode>');
+		    fh.WriteLine('<cyrate>' + $('#S9ZBCYRate').val() + '</cyrate>');
+		    fh.WriteLine('<cytotal>' + $('#S9ZBCYTotal').val() + '</cytotal>');
+		    fh.WriteLine('<cy1code>' + $('#S9ZBCY1Code').val() + '</cy1code>');
+		    fh.WriteLine('<cy1rate>' + $('#S9ZBCY1Rate').val() + '</cy1rate>');
+		    fh.WriteLine('<cy1total>' + $('#S9ZBCY1Total').val() + '</cy1total>');
+		}
+		else
+		{
+			$('.TypeCheckbox:checked').each(function( index ) 
+			{
+				fh.WriteLine('<type>' + $(this).val() + '</type>');
+			});
+			fh.WriteLine('<years>' + $('#iptYears').val() + '</years>');
+			fh.WriteLine('<cym4amount>' + $('#CYM4Expense').val() + '</cym4amount>');
+			fh.WriteLine('<cym4rate>' + $('#CYM4Rate').val() + '</cym4rate>');
+			fh.WriteLine('<cym4total>' + $('#CYM4Loss').val() + '</cym4total>');
+			fh.WriteLine('<cym3amount>' + $('#CYM3Expense').val() + '</cym3amount>');
+			fh.WriteLine('<cym3rate>' + $('#CYM3Rate').val() + '</cym3rate>');
+			fh.WriteLine('<cym3total>' + $('#CYM3Loss').val() + '</cym3total>');
+			fh.WriteLine('<cym2amount>' + $('#CYM2Expense').val() + '</cym2amount>');
+			fh.WriteLine('<cym2rate>' + $('#CYM2Rate').val() + '</cym2rate>');
+			fh.WriteLine('<cym2total>' + $('#CYM2Loss').val() + '</cym2total>');
+			fh.WriteLine('<cym1amount>' + $('#CYM1Expense').val() + '</cym1amount>');
+			fh.WriteLine('<cym1rate>' + $('#CYM1Rate').val() + '</cym1rate>');
+			fh.WriteLine('<cym1total>' + $('#CYM1Loss').val() + '</cym1total>');
+			fh.WriteLine('<cyamount>' + $('#CYExpense').val() + '</cyamount>');
+			fh.WriteLine('<cyrate>' + $('#CYRate').val() + '</cyrate>');
+			fh.WriteLine('<cytotal>' + $('#CYLoss').val() + '</cytotal>');
+			fh.WriteLine('<total>' + $('#TotalLoss').val() + '</total>');
+		}
+		fh.WriteLine('</entry>');
+		fh.WriteLine('</dataroot>');
+		fh.Close();
+		$('.btn-submit').html('<span class="glyphicon glyphicon-ok"></span> Successfully submitted');
+ 		$('.btn-submit').removeClass('btn-primary').addClass('btn-success')
+	}
+	catch(err)
+	{
+		console.warn(err);
+		$('.btn-submit').html('<span class="glyphicon glyphicon-remove"></span> An error has occurred');
+ 		$('.btn-submit').removeClass('btn-primary').addClass('btn-danger')
+	}
+}
+	
+function validateID(str)
+{
+	var validID = true;
+	if(str.length >= 8 && str.length <= 10) //Only accepts NINO or UTR
+	{
+		var i = 0;
+		if(str.length != 10) //Only NINO
+		{		
+			if($.isNumeric(str[0]) && str.length === 8) //Temp NINO
+			{
+				while(validID && i < str.length)
+				{
+					if(i === 2)
+					{
+						validID = isLetter(str[i]);										
+					}
+					else
+					{
+						validID = $.isNumeric(str[i]);						
+					}
+					i++;
+				}	
+				return validID;
+			}
+			else
+			{
+				while(validID && i < str.length)
+				{
+					if(i == 0 || i == 1 || i == 8)
+					{
+						validID = isLetter(str[i]);										
+					}
+					else
+					{
+						validID = $.isNumeric(str[i]);						
+					}
+					i++;
+				}	
+				return validID;
+			}						
+		}
+		else //Only UTR
+		{				
+			while(validID && i < str.length)
+			{
+				if(!$.isNumeric(str[i]))					
+					validID = false;
+				else
+					i++;
+			}				
+			return validID;
+		}
+	}
+	else
+	{
+		validID = false;
+		return validID;
+	}				
+}
+
+function isLetter(str) 
+{
+	if(str.length === 1 && str.match(/[a-z]/i))		
+		return true;		
+	else		
+		return false;		
+}
+	
+function ExpenseTypeValid()
+{
+	var noChkBoxes = 27; //number plus 1
+	var i = 1;
+	var valid = false;
+		
+	while(!valid && i < noChkBoxes)
+	{
+		if($('#chk' + i).is(':checked'))			
+			valid = true;			
+		else
+			i++;
+	}
+	return valid;
+}
+
+</script>
