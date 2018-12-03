@@ -14,9 +14,11 @@
     <title>PT Operations Yield Collector</title>
     
 <!-- Bootstrap core CSS -->
-    <link href="/system/css/bootstrap.css" rel="stylesheet">
-    <link href="/system/js/jQuery/jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
-    <link href="/system/css/custom.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css" >
+<link rel="stylesheet" type="text/css" href="font-awesome.min.css" >
+<link rel="stylesheet" type="text/css" href="jquery-ui.min.css" >
+<link rel="stylesheet" type="text/css" href="style.css" >
+<link rel="stylesheet" type="text/css" href="simple-sidebar.css">
     <!-- Custom styles for this template -->
     <link href="/system/css/navbar-fixed-top.css" rel="stylesheet">
         <link href="/system/css/dashboard.css" rel="stylesheet">
@@ -37,11 +39,11 @@
   <body style="padding-top:15px;">
     
     <!-- Fixed navbar -->
-<div class="container-fluid">
-    <div class="row">        
-		<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-            <div class="widget stacked">
-                <div class="widget-header blue noMinMax">
+	<div class="card">				
+		<div  class="row justify-content-center" id="mainrow">
+			<div class="col-11">
+				<div class="card mb-5">
+					<div class="card-header card-info text-center text-white process-title">
                     <h3>PT Operations Yield Collector</h3>
 					<span style="float:right" id="RateIt">
 					<strong><a data-type="howtoRateIt" data-which="/system/RateIt_popup.htm" data-size="lg"><span class="RateIt">Rate It</span></a></strong>
@@ -58,20 +60,28 @@
 						</span>
 					</span>                    
                 </div>                
-                <div class="widget-content">
-                	<span id="yieldReferral"></span>  									
+                <div class="card-block">
+                	<span id="yieldReferral"></span>  
 				</div>
-            </div>                  
-        </div>
+			</div>
+		</div>
     </div>
 </div>
 <!--#include virtual="/system/includes/modal.inc" -->
 <!--#include virtual="/system/includes/scripts.inc" -->
+<script src="/system/bootstrap4/jquery-3.1.1.min.js"></script>
+<script src="/system/bootstrap4/jquery-ui.min.js"></script>
+<script src="/system/bootstrap4/tether.min.js"></script>
+<script src="/system/bootstrap4/popper.min.js"></script>
+<script src="/system/bootstrap4/bootstrap-4.0.0-beta.2-dist/js/bootstrap.min.js"></script>
+<script src="/system/js/jquery.cookie.js"></script>
+<script src="/system/js/functions.js"></script>
+
 <script type="text/javascript">
 
 $(document).ready(function()
 {
-	$('#yieldReferral').load('/tax/referrals/tax20100_plugin.htm', function()
+	$('#yieldReferral').load('wireframe_plugin.htm', function()
 	{		
 		$('[data-show-from]').each(function ()
 	{
